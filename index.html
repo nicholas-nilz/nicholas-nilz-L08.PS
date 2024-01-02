@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me!</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fullpage.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+
+<body>
+    <div id="fullpage">
+        <!-- Section 1 -->
+        <div class="section">
+            <div class="container">
+                <div class="profile">
+                    <img id="profileImage" src="images/me.jpeg" alt="Your Name">
+                    <h1 id="name">Nicholas Leong</h1>
+                    <h2 id="jobTitle">Student </h2>
+                    <p id="description">Hello! I am Nicholas Leong, a Year 2 student currently studying Diploma of
+                        Digital
+                        Design & Development in Republic Polytechnic.</p>
+                    <p id="age">Age: <span id="ageCounter">18</span></p>
+                    <button class="play1">Play</button>
+                    <button class="pause1">Pause</button>
+                    <button class="restart1">Refresh</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="section">
+            <div class="container">
+                <div class="social-container">
+                    <h2 class="sub-heading">Contact and Socials</h2>
+                    <div class="contact-info">
+                        <p>Have a question for me? Get in touch with me!</p>
+                    </div>
+                    <div class="social-icons">
+                        <div class="social-icon">
+                            <a href="https://www.instagram.com/nilplayz/?hl=en"><i class='bx bxl-instagram'></i></a>
+                            <span>@nilplayz</span>
+                        </div>
+                        <div class="social-icon">
+                            <a href="https://web.telegram.org/a/#nniilzz"><i class='bx bxl-telegram'></i></a>
+                            <span>@nniilzz</span>
+                        </div>
+                        <div class="social-icon">
+                            <a href="https://api.whatsapp.com/send/?phone=%2B90716235&text&type=phone_number&app_absent=0"><i
+                                    class='bx bxl-whatsapp'></i></a>
+                            <span>+65 9071 6235</span>
+                        </div>
+                        <div class="social-icon">
+                            <a href="https://mail.google.com/mail/u/0/?hl=en#inbox?compose=new"><i
+                                    class='bx bx-envelope'></i></a>
+                            <span>nicholasleongyt@gmail.com</span>
+                        </div>
+                        <div class="social-icon">
+                            <a href="https://www.linkedin.com/in/nicholas-leong-7aa6a9244/"><i
+                                    class='bx bxl-linkedin'></i></a>
+                            <span>Nicholas Leong</span>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <button class="pause2">Pause</button>
+                <button class="restart2">Refresh</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/fullpage.js/dist/fullpage.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+    <script>
+        var Timeline1 = anime.timeline({
+            autoplay: false
+        });
+    
+        var spinTitle1 = anime({
+            targets: '.section1.active',
+            translateY: [-100, 0],
+            opacity: [0, 1],
+            easing: 'easeOutExpo',
+            duration: 1500
+        });
+    
+        Timeline1
+            .add({
+                targets: '#name, #jobTitle, #description',
+                translateY: [100, 0],
+                opacity: [0, 1],
+                easing: 'easeOutExpo',
+                duration: 1500,
+                delay: anime.stagger(200),
+            })
+            .add({
+                targets: '#profileImage',
+                translateY: -25,
+                rotate: 360,
+                opacity: [0, 1],
+                delay: 500
+            }, '-=1200')
+            .add({
+                targets: '#ageCounter',
+                innerHTML: [0, 18],
+                easing: 'linear',
+                round: 1,
+                duration: 2000
+            }, '-=1500');
+    
+        var Timeline2 = anime.timeline({
+            autoplay: false
+        });
+    
+        var spinTitle2 = anime({
+            targets: '.section2.active',
+            translateY: [-100, 0],
+            opacity: [0, 1],
+            easing: 'easeOutExpo',
+            duration: 1500
+        });
+    
+        Timeline2
+            .add({
+                targets: '.sub-heading, .contact-info p',
+                translateY: [100, 0],
+                opacity: [0, 1],
+                easing: 'easeOutExpo',
+                duration: 1500,
+                delay: anime.stagger(200),
+            })
+            .add({
+                targets: '.social-icon',
+                translateY: [100, 0],
+                opacity: [0, 1],
+                easing: 'easeOutExpo',
+                duration: 800,
+                delay: anime.stagger(400),
+            });
+    
+        document.querySelector('.play1').onclick = function () {
+            Timeline1.play();
+            Timeline2.play();
+            spinTitle1.restart();
+        };
+        document.querySelector('.pause1').onclick = function () {
+            Timeline1.pause();
+        };
+        document.querySelector('.restart1').onclick = function () {
+            Timeline1.restart();
+            spinTitle1.restart();
+        };
+    
+        // document.querySelector('.play2').onclick = function () {
+        //     Timeline2.play();
+        //     spinTitle2.restart();
+        // };
+        document.querySelector('.pause2').onclick = function () {
+            Timeline2.pause();
+        };
+        document.querySelector('.restart2').onclick = function () {
+            Timeline2.restart();
+            spinTitle2.restart();
+        };
+    
+        // Initialize fullPage.js
+        $(document).ready(function () {
+            $('#fullpage').fullpage({
+                sectionsColor: ['#f2f2f2', '#f2f2f2'],
+                anchors: ['section1', 'section2'],
+                menu: '#menu',
+                slidesNavigation: true,
+                afterLoad: function (origin, destination, direction) {
+                    if (destination.index == 1) {
+                        spinTitle1.restart();
+                    } else if (destination.index == 2) {
+                        spinTitle2.restart();
+                    }
+                }
+            });
+        });
+    </script>
+    
+</body>
+</html>
